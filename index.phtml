@@ -11,15 +11,27 @@
 
     <h1>Weather</h1>
 
-    <!-- section 1 --- tides -->
+    <!-- section 1 --- moon -->
     <section>
-        <h2>Weather</h2>
+        <h2>Moon</h2>
 
-
+        <!-- display moon phase information for Biarritz -->
+        <ul>
+            <li>
+                Location: <?= $response['location']["name"] ?>
+            </li>
+            <li>
+                Aujourd'hui: <?= $response['current']["last_updated"] ?>
+            </li>
+            <li>
+                Moon phase:<?= $response['forecast']['forecastday']['0']["astro"]["moon_phase"] ?>
+            </li>
+        </ul>
 
     </section>
+    
+   
 
-    <!-- section 2 --- moon -->
     
 </body>
 </html>
