@@ -9,23 +9,23 @@
 </head>
 <body class="container">
 
-    <h1>Weather</h1>
+    <h1>STORM GLASS</h1>
 
-    <!-- section 1 --- moon -->
+    <!-- section 1 --- tides -->
     <section>
-        <h2>Moon</h2>
-
-        <!-- display moon phase information for Biarritz -->
+        <h2>Tides in Biarritz</h2>
+    
         <ul>
             <li>
-                Location: <?= $response['location']["name"] ?>
+                Date: <?= $response['data'][0]["time"] ?>
             </li>
             <li>
-                Aujourd'hui: <?= $response['current']["last_updated"] ?>
+                Sea level: <?= $response['data'][0]["height"] ?>
             </li>
             <li>
-                Moon phase:<?= $response['forecast']['forecastday']['0']["astro"]["moon_phase"] ?>
+                <?= $response['data'][0]["type"] ?> tide
             </li>
+
         </ul>
 
     </section>
