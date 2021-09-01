@@ -31,26 +31,33 @@
     <!-- section 2 --- moon -->
     <section>
         <h2>Moon phase</h2>
-    
+
+        <p>La lune aujourd'hui, le <?= $response2['location']['localtime']?> </p>
+
         <ul>
             <li>
-                Current moon: <?= $response2['data'][0]['moonPhase']['current']['text'] ?>
+                Current moon phase: <?= $response2['astronomy']['astro']['moon_phase']?>
             </li>
             <li>
-                Moonrise: <?= $response2['data'][0]['moonrise']?>
+                Moon illumination: <?= $response2['astronomy']['astro']['moon_illumination']?> %
             </li>
-            <li>
-                Sunrise: <?= $response2['data'][0]['sunrise']?>
-            </li>
-            <li>
-                Moonset: <?= $response2['data'][0]['moonset']?>
-            </li>
-            
-            <li>
-                Sunset: <?= $response2['data'][0]['sunset']?>
-            </li>
-
         </ul>
+
+        <ul>
+            <li>
+                Moonrise: <?= $response2['astronomy']['astro']['moonrise']?> 
+            </li>
+            <li>
+                Sunrise: <?= $response2['astronomy']['astro']['sunrise']?> 
+            </li>
+            <li>
+                Sunset: <?= $response2['astronomy']['astro']['sunset']?> 
+            </li>
+            <li>
+                Moonset: <?= $response2['astronomy']['astro']['moonset']?> 
+            </li>
+        </ul>
+
     </section>
     
    
