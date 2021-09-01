@@ -25,9 +25,32 @@
             <li>
                 <?= $response['data'][0]["type"] ?> tide
             </li>
+        </ul>
+    </section>
+
+    <!-- section 2 --- moon -->
+    <section>
+        <h2>Moon phase</h2>
+    
+        <ul>
+            <li>
+                Current moon: <?= $response2['data'][0]['moonPhase']['current']['text'] ?>
+            </li>
+            <li>
+                Moonrise: <?= $response2['data'][0]['moonrise']?>
+            </li>
+            <li>
+                Sunrise: <?= $response2['data'][0]['sunrise']?>
+            </li>
+            <li>
+                Moonset: <?= $response2['data'][0]['moonset']?>
+            </li>
+            
+            <li>
+                Sunset: <?= $response2['data'][0]['sunset']?>
+            </li>
 
         </ul>
-
     </section>
     
    
