@@ -3,65 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tides</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Tides & moon</title>
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- css -->
     <link rel="stylesheet" href="assets/sass/main.scss">
+    <!-- montserrat Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body class="container">
 
-    <h1>STORM GLASS</h1>
+    <!----- HEADER ----->
+    <header>
 
-    <!-- section 1 --- tides -->
-    <section>
-        <h2>Tides in Biarritz</h2>
+        <h1>Tide & moon phase for <?= $response2['location']['name']?></h1>
+        <h2><?= $response2['location']['region']?>, <?= $response2['location']['country']?></h>
+
+    </header>
+
+    <!----- MAIN ----->
+    <main>
     
-        <ul>
-            <li>
-                Date: <?= $response['data'][0]["time"] ?>
-            </li>
-            <li>
-                Sea level: <?= $response['data'][0]["height"] ?>
-            </li>
-            <li>
-                <?= $response['data'][0]["type"] ?> tide
-            </li>
-        </ul>
-    </section>
+        <!-- section 1 --- tides -->
+        <section>
+            <h2>Tides</h2>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Next <?= $response['data'][0]["type"] ?> tide</h6>
 
-    <!-- section 2 --- moon -->
-    <section>
-        <h2>Moon phase</h2>
+                    <!-- display tide icon according to tide type -->
+                    <?php if($response['data'][0]["type"] == 'high') : ?>
+                        <i class="fas fa-level-up-alt"></i>
+                            <?php else : ?>
+                            <i class="fas fa-level-down-alt"></i>
+                    <?php endif?>
 
-        <p>La lune aujourd'hui, le <?= $response2['location']['localtime']?> </p>
+                    <p class="card-text">Time: <?= $response['data'][0]["time"] ?>UTC</p>
+                    <p class="card-text">Sea level: <?= $response['data'][0]["height"] ?> meters</p>
+                </div>
+            </div>
 
-        <ul>
-            <li>
-                Current moon phase: <?= $response2['astronomy']['astro']['moon_phase']?>
-            </li>
-            <li>
-                Moon illumination: <?= $response2['astronomy']['astro']['moon_illumination']?> %
-            </li>
-        </ul>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Next <?= $response['data'][1]["type"] ?> tide</h6>
+                    
+                    <!-- display tide icon according to tide type -->
+                    <?php if($response['data'][1]["type"] == 'high') : ?>
+                        <i class="fas fa-level-up-alt"></i>
+                            <?php else : ?>
+                            <i class="fas fa-level-down-alt"></i>
+                    <?php endif?>
+                    
+                    <p class="card-text">Time: <?= $response['data'][1]["time"] ?>UTC</p>
+                    <p class="card-text">Sea level: <?= $response['data'][1]["height"] ?> meters</p>
+                </div>
+            </div>
 
-        <ul>
-            <li>
-                Moonrise: <?= $response2['astronomy']['astro']['moonrise']?> 
-            </li>
-            <li>
-                Sunrise: <?= $response2['astronomy']['astro']['sunrise']?> 
-            </li>
-            <li>
-                Sunset: <?= $response2['astronomy']['astro']['sunset']?> 
-            </li>
-            <li>
-                Moonset: <?= $response2['astronomy']['astro']['moonset']?> 
-            </li>
-        </ul>
+        </section>
 
-    </section>
+        <!-- section 2 --- moon -->
+        <section>
+            <h2>Moon phase</h2>
+
+            <p>La lune aujourd'hui, le <?= $response2['location']['localtime']?></p>
+
+            <ul>
+                <li>
+                    Current moon phase: <?= $response2['astronomy']['astro']['moon_phase']?>
+                </li>
+                <li>
+                    Moon illumination: <?= $response2['astronomy']['astro']['moon_illumination']?> %
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    Moonrise: <?= $response2['astronomy']['astro']['moonrise']?> 
+                </li>
+                <li>
+                    Sunrise: <?= $response2['astronomy']['astro']['sunrise']?> 
+                </li>
+                <li>
+                    Sunset: <?= $response2['astronomy']['astro']['sunset']?> 
+                </li>
+                <li>
+                    Moonset: <?= $response2['astronomy']['astro']['moonset']?> 
+                </li>
+            </ul>
+
+        </section>
     
-   
+    </main>
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+
 </body>
 </html>
