@@ -25,7 +25,7 @@ if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
 	$response = json_decode($response, true);
-    echo '<pre>';var_dump($response);echo '<pre>';
+    // echo '<pre>';var_dump($response);echo '<pre>';
 }
 
 
@@ -56,7 +56,7 @@ if ($err2) {
 	echo "cURL Error #:" . $err2;
 } else {
 	$response2 = json_decode($response2, true);
-    echo '<pre>';var_dump($response2);echo '<pre>';
+    // echo '<pre>';var_dump($response2);echo '<pre>';
 }
 
 // Display home's template

@@ -1,0 +1,62 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+header{
+    text-align: center;
+    color: white;
+    background-image:   linear-gradient(to right, rgba(35, 24, 52, 0.379), rgba(35, 24, 52, 0.379)), url('../images/biarritz2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;    
+    background-position: bottom;
+    padding: 14rem 2rem;
+}
+
+h1{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 4rem;
+}
+
+h2, h3{
+    font-family: 'Permanent Marker', cursive;
+    margin: 2rem auto;
+}
+
+h5{
+    margin-bottom: 1.8rem !important;
+}
+h6{
+    margin: 1rem auto !important;
+}
+
+.card{
+    margin: 3rem 5rem;
+}
+
+.location-and-info{
+    display: flex;
+}    
+    .card-info{
+        background-color: #2F566A;
+        color: white;
+        position: absolute;
+        left: 65rem;
+        top: 37rem;
+    }
+    
+
+.tides{
+    display: flex;
+}
+    .tides-and-icon{
+        display: flex;
+        margin-bottom: 2rem;
+    }
+
+    .fas{    
+        font-size: 2.5rem;
+    }
+
+.moon-phase{
+    display: flex;
+}

@@ -9,95 +9,103 @@
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- css -->
-    <link rel="stylesheet" href="assets/sass/main.scss">
-    <!-- montserrat Google Font -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- roboto Google Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet">
+    <!-- Permanent Marker Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 
-<body class="container">
-
+<body>
     <!----- HEADER ----->
     <header>
-
-        <h1>Tide & moon phase for <?= $response2['location']['name']?></h1>
-        <h2><?= $response2['location']['region']?>, <?= $response2['location']['country']?></h>
-
+        <h1>Tides & Moon</h1>        
     </header>
 
     <!----- MAIN ----->
-    <main>
+    <main class="container">
+
+        <div class="location-and-info">
+
+            <h3>Location: <?= $response2['location']['name']?>, <?= $response2['location']['region']?>, <?= $response2['location']['country']?></h3>
+
+            <div class="card card-info" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">How does the moon affect tides?</h5>
+                    <p class="card-text">High and low tides are caused by the moon. The moon's gravitational pull generates something called the tidal force. The tidal force causes Earth—and its water—to bulge out on the side closest to the moon and the side farthest from the moon. These bulges of water are high tides.</p>
+                    <p><i>Source <a href="https://scijinks.gov/tides/" class="card-link" target="_blank">NOAA</a> (National Oceanic and Atmospheric Administration)</i></p>
+                </div>
+            </div>
+        </div>
     
         <!-- section 1 --- tides -->
         <section>
             <h2>Tides</h2>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Next <?= $response['data'][0]["type"] ?> tide</h6>
+            <div class="tides">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="tides-and-icon">
+                            <h6 class="card-subtitle mb-2 text-muted">Next <?= $response['data'][0]["type"] ?> tide</h6>
 
-                    <!-- display tide icon according to tide type -->
-                    <?php if($response['data'][0]["type"] == 'high') : ?>
-                        <i class="fas fa-level-up-alt"></i>
-                            <?php else : ?>
-                            <i class="fas fa-level-down-alt"></i>
-                    <?php endif?>
+                            <!-- display tide icon according to tide type -->
+                            <?php if($response['data'][0]["type"] == 'high') : ?>
+                                <i class="fas fa-arrow-up"></i>
+                                    <?php else : ?>
+                                        <i class="fas fa-arrow-down"></i>
+                            <?php endif?>
+                        </div>
+                        
+                        <p class="card-text">Time: <?= $response['data'][0]["time"] ?>UTC</p>
+                        <p class="card-text">Sea level: <?= $response['data'][0]["height"] ?> meters</p>
+                    </div>
+                </div>
 
-                    <p class="card-text">Time: <?= $response['data'][0]["time"] ?>UTC</p>
-                    <p class="card-text">Sea level: <?= $response['data'][0]["height"] ?> meters</p>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="tides-and-icon">
+                            <h6 class="card-subtitle mb-2 text-muted">Next <?= $response['data'][1]["type"] ?> tide</h6>
+
+                            <!-- display tide icon according to tide type -->
+                            <?php if($response['data'][1]["type"] == 'high') : ?>
+                                <i class="fas fa-arrow-up"></i>
+                                    <?php else : ?>
+                                        <i class="fas fa-arrow-down"></i>
+                            <?php endif?>
+                        </div>
+
+                        <p class="card-text">Time: <?= $response['data'][1]["time"] ?>UTC</p>
+                        <p class="card-text">Sea level: <?= $response['data'][1]["height"] ?> meters</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Next <?= $response['data'][1]["type"] ?> tide</h6>
-                    
-                    <!-- display tide icon according to tide type -->
-                    <?php if($response['data'][1]["type"] == 'high') : ?>
-                        <i class="fas fa-level-up-alt"></i>
-                            <?php else : ?>
-                            <i class="fas fa-level-down-alt"></i>
-                    <?php endif?>
-                    
-                    <p class="card-text">Time: <?= $response['data'][1]["time"] ?>UTC</p>
-                    <p class="card-text">Sea level: <?= $response['data'][1]["height"] ?> meters</p>
-                </div>
-            </div>
-
         </section>
 
         <!-- section 2 --- moon -->
         <section>
             <h2>Moon phase</h2>
+            <div class="moon-phase">	
+                <div class="card" style="width: 20rem;">
+                    <img src="assets/images/moon-phases.jpg" class="card-img-top" alt="moon phases"> 
+                    <div class="card-body">
+                        <h6>Today moon phase: <span><?= $response2['astronomy']['astro']['moon_phase']?></span></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Moon illumination: <?= $response2['astronomy']['astro']['moon_illumination']?> %</h6> 
+                    </div>
+                </div>
 
-            <p>La lune aujourd'hui, le <?= $response2['location']['localtime']?></p>
-
-            <ul>
-                <li>
-                    Current moon phase: <?= $response2['astronomy']['astro']['moon_phase']?>
-                </li>
-                <li>
-                    Moon illumination: <?= $response2['astronomy']['astro']['moon_illumination']?> %
-                </li>
-            </ul>
-
-            <ul>
-                <li>
-                    Moonrise: <?= $response2['astronomy']['astro']['moonrise']?> 
-                </li>
-                <li>
-                    Sunrise: <?= $response2['astronomy']['astro']['sunrise']?> 
-                </li>
-                <li>
-                    Sunset: <?= $response2['astronomy']['astro']['sunset']?> 
-                </li>
-                <li>
-                    Moonset: <?= $response2['astronomy']['astro']['moonset']?> 
-                </li>
-            </ul>
-
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Moon & Sun's appointments</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Moonrise: <?= $response2['astronomy']['astro']['moonrise']?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Sunrise: <?= $response2['astronomy']['astro']['sunrise']?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Sunset: <?= $response2['astronomy']['astro']['sunset']?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Moonset: <?= $response2['astronomy']['astro']['moonset']?></h6>
+                    </div>
+                </div>
+            </div>
         </section>
-    
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
